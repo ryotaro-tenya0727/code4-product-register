@@ -3,11 +3,13 @@ default: &default
   encoding: utf8
   port: 3306
   pool: <%= ENV.fetch("RAILS_MAX_THREADS"){5}%>
-  username: admin
 
 development:
   <<: *default
+  username: root
+  password: asdy164g
   database: product_register_new_development
+  host: db
 
 test:
   <<: *default
@@ -18,4 +20,5 @@ production:
   database: product_register_new_production
   password: <%= ENV['DATABASE_PASSWORD']%>
   socket: /var/lib/mysql/mysql.sock
+  username: admin
   host: database-product.cz1ouy4op612.ap-northeast-1.rds.amazonaws.com
