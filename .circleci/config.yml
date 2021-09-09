@@ -15,8 +15,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
           name: install dependencies
           #自分のアプリで使っているbundler のバージョンを設定
@@ -28,7 +27,7 @@ jobs:
           paths:
             - vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-　　　 - run:
+      - run:
           name: データベースの起動を待機
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
