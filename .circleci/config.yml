@@ -4,9 +4,11 @@ jobs:
     docker:
       #以降のコマンドは一つ目のイメージをベースに実行
       - image: circleci/ruby:2.5.9-node-browsers
+      environment:
+          - RAILS_ENV: 'test'
       - image: circleci/mysql:5.6
         environment:
-          MYSQL_ROOT_PASSWORD: password
+          - MYSQL_ROOT_PASSWORD: password
     environment:
       # circleci/mysql:5.6がポートを EXPOSE しているので、一つ目のコンテナでlocalhost からフォワードできる様になっている
       # `localhost:3306` で circleci/mysql:5.6に接続可能
