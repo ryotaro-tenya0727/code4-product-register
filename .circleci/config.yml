@@ -1,0 +1,42 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      #以降のコマンドは一つ目のイメージをベースに実行
+      - image: circleci/ruby:2.5.9-node-browsers
+      - image: circleci/mysql:5.6
+        environment:
+          MYSQL_ROOT_PASSWORD: password
+    environment:
+      # circleci/mysql:5.6がポートを EXPOSE しているので、一つ目のコンテナでlocalhost からフォワードできる様になっている
+      # `localhost:3306` で circleci/mysql:5.6に接続可能
+      #portがdatabase.yml 3306を指定
+      DB_HOST: localhost
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: install dependencies
+          #自分のアプリで使っているbundler のバージョンを設定
+          command: |
+            gem install bundler -v 1.17.3
+            bundle install
+      - save_cache:
+          key: composer-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+　　　 - run:
+          name: データベースの起動を待機
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run:
+          name: データベースのセットアップ1
+          command: rails db:create
+      - run:
+          name: データベースのセットアップ2
+          command: rails db:migrate
+      - run:
+          name: run tests
+          command: bin/rspec

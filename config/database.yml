@@ -7,15 +7,16 @@ default: &default
 development:
   <<: *default
   username: root
-  password: asdy164g
+  password: password
   database: product_register_new_development
-  host: db
+  host: <%= ENV['DB_HOST'] %>
 
 test:
   <<: *default
   database: product_register_new_test
-  host: db
-  password: asdy164g
+  username: root
+  host: <%= ENV['DB_HOST'] %>
+  password: password
 
 production:
   <<: *default
