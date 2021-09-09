@@ -23,10 +23,9 @@ jobs:
             gem install bundler -v 1.17.3
             bundle install
       - save_cache:
-          key: composer-v1-{{ checksum "Gemfile.lock" }}
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
       - run:
           name: データベースの起動を待機
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
