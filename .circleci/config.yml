@@ -33,10 +33,10 @@ jobs:
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
       - run:
           name: データベースのセットアップ1
-          command: rails db:create
+          command: bundle exec rake db:create
       - run:
           name: データベースのセットアップ2
-          command: rails db:migrate
+          command: bundle exec rake db:migrate
       - run:
           name: run tests
           command: bin/rspec
