@@ -13,7 +13,7 @@ jobs:
       # circleci/mysql:5.6がポートを EXPOSE しているので、一つ目のコンテナでlocalhost からフォワードできる様になっている
       # `localhost:3306` で circleci/mysql:5.6に接続可能
       #portがdatabase.yml 3306を指定
-      DB_HOST: localhost
+      DB_HOST: 127.0.0.1
     steps:
       - checkout
       - restore_cache:
@@ -23,14 +23,14 @@ jobs:
           #自分のアプリで使っているbundler のバージョンを設定
           command: |
             gem install bundler -v 1.17.3
-            bundle install
+            bundle install --path vendor/bundle
       - save_cache:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
           name: データベースの起動を待機
-          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
       - run:
           name: データベースのセットアップ1
           command: rails db:create
