@@ -32,10 +32,10 @@ jobs:
           name: データベースの起動を待機
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
       - run:
-          name: データベースのセットアップ1
+          name: データベースの作成
           command: bundle exec rake db:create
       - run:
-          name: データベースのセットアップ2
+          name: データベースのマイグレーション
           command: bundle exec rake db:migrate
       - run:
           name: run tests
