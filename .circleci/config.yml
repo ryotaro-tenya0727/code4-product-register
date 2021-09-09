@@ -4,7 +4,7 @@ jobs:
     docker:
       #以降のコマンドは一つ目のイメージをベースに実行
       - image: circleci/ruby:2.5.9-node-browsers
-      environment:
+        environment:
           - RAILS_ENV: 'test'
       - image: circleci/mysql:5.6
         environment:
