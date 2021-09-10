@@ -40,8 +40,8 @@ jobs:
       - run:
           name: run tests
           command: bin/rspec
-    deploy:
-      docker:
-        - image: circleci/ruby:2.5.9-node-browsers
-      steps:
-        - checkout
+    # deploy:
+    #   docker:
+    #     - image: circleci/ruby:2.5.9-node-browsers
+    #   steps:
+    #     - checkout
