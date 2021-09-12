@@ -1,16 +1,28 @@
 version: 0.0
 os: linux
 files:
+#現在のディレクトリをEC2のアプリケーションにデプロイする設定
   - source: /
-    destination: /home/webapp/laravel-ci
-
-permissions:
-  - object: /home/webapp/laravel-ci
-    owner: webapp
-    group: webapp
-
+    destination: /var/www/code4-product-register
+permissions:
+#/var/www 以下の全てのディレクトリに755の権限を設定
+   - object: /var/www/
+     pattern: "**"
+     mode: 775
 hooks:
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 300
+      runas: ec2-user
+  BeforeInstall:
+    - location: scripts/clean.sh
+      timeout: 300
+      runas: ec2-user
   AfterInstall:
-    - location: ./scripts/after_install.sh
-      timeout: 60
-      runas: webapp
+    - location: scripts/bundle_install.sh
+      timeout: 300
+      runas: ec2-user
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 300
+      runas: ec2-user
