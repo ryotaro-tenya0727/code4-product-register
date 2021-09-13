@@ -4,11 +4,11 @@ phases:
   #codebuild から S3 に渡すとき。
   install:
     commands:
-      - pwd
-      - rbenv install 2.5.9
-      - bundle install --path vendor/bundle
+      - bundle install
   build:
     commands:
+      - rails db:create RAILS_ENV=production
+      - rails db:migrate RAILS_ENV=production
       - rails assets:precompile RAILS_ENV=production
 artifacts:
   files:
