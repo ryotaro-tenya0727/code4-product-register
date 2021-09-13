@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       #以降のコマンドは一つ目のイメージをベースに実行
-      - image: circleci/ruby:2.6-node-browsers
+      - image: circleci/ruby:2.5.9-node-browsers
         environment:
           - RAILS_ENV: 'test'
       - image: circleci/mysql:5.6
@@ -42,7 +42,7 @@ jobs:
           command: bin/rspec
   deploy_tmp:
     docker:
-      - image: circleci/ruby:2.6-node-browsers
+      - image: circleci/ruby:2.5.9-node-browsers
     steps:
       - checkout
       - add_ssh_keys
