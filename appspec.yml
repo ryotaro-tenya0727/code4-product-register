@@ -14,12 +14,12 @@ hooks:
     - location: scripts/stop_server.sh
       timeout: 300
       runas: ec2-user
-  DownloadBundle:
-    - location: scripts/bundle_install.sh
-      timeout: 300
-      runas: ec2-user
   BeforeInstall:
     - location: scripts/clean.sh
+      timeout: 300
+      runas: ec2-user
+  AfterInstall:
+    - location: scripts/bundle_install.sh
       timeout: 300
       runas: ec2-user
   ApplicationStart:
