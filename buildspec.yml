@@ -4,14 +4,10 @@ phases:
   #codebuild から S3 に渡すとき。
   install:
     commands:
-      - composer self-update --1
-      - composer install -n --no-dev --prefer-dist
-      - npm ci
-
+      - cd /var/www/code4-product-register && bundle install --path vendor/bundle
   build:
     commands:
-      - npm run prod
-
+      - rails assets:precompile RAILS_ENV=production
 artifacts:
   files:
     - './**/*'
