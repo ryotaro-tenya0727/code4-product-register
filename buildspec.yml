@@ -4,15 +4,14 @@ phases:
   #codebuild から S3 に渡すとき。
   install:
     runtime-versions:
-      ruby: 2.6
       nodejs: 10
   pre_build:
     commands:
-      - rbenv install 2.6.8 && rbenv global 2.6.8
-      - bundle update
+      - pwd
+      - rbenv install 2.5.9
+      - bundle install --path vendor/bundle
   build:
     commands:
-      - echo Build Start
       - rails assets:precompile RAILS_ENV=production
 artifacts:
   files:
