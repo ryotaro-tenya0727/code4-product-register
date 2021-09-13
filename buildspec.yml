@@ -4,7 +4,7 @@ phases:
   #codebuild から S3 に渡すとき。
   install:
     commands:
-      - cd /var/www/code4-product-register && bundle install --path vendor/bundle
+      - bundle install --path vendor/bundle
   build:
     commands:
       - rails assets:precompile RAILS_ENV=production
