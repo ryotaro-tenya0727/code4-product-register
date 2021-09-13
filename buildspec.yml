@@ -4,6 +4,8 @@ phases:
   #codebuild から S3 に渡すとき。
   install:
     commands:
+      - pwd
+      - rbenv install 2.5.9
       - bundle install --path vendor/bundle
   build:
     commands:
