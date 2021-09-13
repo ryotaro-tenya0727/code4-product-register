@@ -8,7 +8,7 @@ phases:
       nodejs: 10
   pre_build:
     commands:
-      - rbenv install 2.6 && rbenv global 2.5.9
+      - rbenv install 2.6.8 && rbenv global 2.6.8
       - bundle install
   build:
     commands:
