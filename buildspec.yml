@@ -7,8 +7,8 @@ phases:
       nodejs: 10
   pre_build:
     commands:
-      - gem install bundler -v 1.17.3
       - rbenv install 2.5.9
+      - gem install bundler -v 1.17.3
       - bundle install --path vendor/bundle
   build:
     commands:
