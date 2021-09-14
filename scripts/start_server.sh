@@ -1,4 +1,5 @@
 #!/bin/bash
+source ~/.bash_profile
 cd /var/www/code4-product-register
 sudo systemctl reload nginx
 sudo systemctl start nginx
