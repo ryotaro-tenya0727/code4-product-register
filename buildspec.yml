@@ -7,9 +7,13 @@ phases:
       nodejs: 10
   pre_build:
     commands:
-      - rbenv install 2.5.9
+      - rbenv install 2.5.9 & rbenv global 2.5.9
       - gem install bundler -v 1.17.3
-      - bundle install --path vendor/bundle
+      - bundle install
+  build:
+    commands:
+      - echo Build Start
+      - rails assets:precompile RAILS_ENV=production
 artifacts:
   files:
     - './**/*'
