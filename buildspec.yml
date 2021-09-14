@@ -9,7 +9,7 @@ phases:
     commands:
       - rbenv install 2.5.9
       - gem install bundler -v 1.17.3
-      - bundle install
+      - bundle install --path vendor/bundle
 artifacts:
   files:
     - './**/*'
