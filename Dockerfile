@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     postgresql-client \
     yarn
-WORKDIR /product-register
-COPY Gemfile Gemfile.lock /product-register/
+WORKDIR /code4-product-register
+COPY Gemfile Gemfile.lock /code4-product-register/
 EXPOSE 3000
 RUN bundle install
