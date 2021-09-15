@@ -9,8 +9,12 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - '.:/product-register'
+      - '.:/code4-product-register'
     tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: root
+      DB_HOST: db
     stdin_open: true
     depends_on:
       - db
