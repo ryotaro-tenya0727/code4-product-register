@@ -15,9 +15,9 @@ jobs:
       #portがdatabase.yml 3306を指定
       DB_HOST: 127.0.0.1
     steps:
-      - pwd
+      - command: pwd
       - checkout
-      - pwd
+      - command: pwd
       - restore_cache:
           key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
       - run:
