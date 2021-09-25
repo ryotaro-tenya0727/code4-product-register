@@ -14,6 +14,7 @@ jobs:
       # `localhost:3306` で circleci/mysql:5.6に接続可能
       #portがdatabase.yml 3306を指定
       DB_HOST: 127.0.0.1
+    working_directory: ~/code4-product-register/
     steps:
       - run: pwd
       - checkout
